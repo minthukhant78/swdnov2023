@@ -1,11 +1,12 @@
-import React from "react";
-import products from "../data/products";
+// import React from "react";
+// import products from "../data/products";
 import Cart from "./Cart";
-import { Container } from "./Container";
+// import { Container } from "./Container";
 import { Link } from "react-router-dom";
 import useCartStore from "../store/useCartStore";
 import useProductStore from "../store/useProductStore";
 import emptyCartImg from "../assets/empty-cart.svg";
+import { CreditCard } from 'lucide-react'
 
 const CartSection = () => {
   const { carts } = useCartStore();
@@ -35,26 +36,37 @@ const CartSection = () => {
           carts.map((cart) => <Cart key={cart.id} cart={cart} />)
         )}
 
-        <div className=" absolute bottom-10 left-0 w-full bg-white">
-          <Container className="px-5">
-            <div className=" border-t border-black flex justify-end gap-10 py-3">
-              <div className=" text-right">
+        <div className="  ">
+          {/* <Container className="px-5"> */}
+           
+           
+           <div className=" bg-gradient-to-br from-gray-50 to-gray-100 py-4 px-6" >
+           <div className=" flex justify-between items-center mb-4">
                 <p className=" text-gray-500">Total</p>
                 <p className=" font-bold">{total.toFixed(2)}</p>
               </div>
-              <div className=" text-right">
-                <p className=" text-gray-500">Tax(10%)</p>
-                <p className=" font-bold">{tax.toFixed(2)}</p>
+              <div className=" flex justify-between items-center mb-4 ">
+                <p className="text-lg font-medium text-gray-900">Tax(10%)</p>
+               <p className=" font-bold">{tax.toFixed(2)}</p>
               </div>
-              <div className=" text-right">
-                <p className=" text-gray-500">Net Total</p>
-                <p className=" text-2xl font-bold">{netTotal.toFixed(2)}</p>
+           <div className=" flex justify-between items-center mb-4">
+                <span className=" text-lg font-medium text-gray-900">Net Total</span>
+                <p className=" text-xl font-bold text-blue-600">{netTotal.toFixed(2)}</p>
               </div>
-            </div>
-            <div className=" text-end mb-5">
-              <Link className=" border border-black px-4 py-2 ">Order Now</Link>
-            </div>
-          </Container>
+           </div>
+            
+           <Link
+          href="/checkout"
+          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-150 ease-in-out flex items-center justify-center"
+          aria-label="Proceed to Checkout"
+        >
+          <CreditCard className="w-5 h-5 mr-2" />
+          Proceed to Checkout
+        </Link>
+          
+              {/* <Link className=" border border-black px-4 py-2 ">Order Now</Link> */}
+           
+          {/* </Container> */}
         </div>
       </div>
     </>
